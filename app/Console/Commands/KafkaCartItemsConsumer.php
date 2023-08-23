@@ -30,9 +30,7 @@ class KafkaCartItemsConsumer extends Command
 
         // Specify the topic name
         $topic = 'cart_items';
-
         $consumer = $context->createConsumer($context->createQueue($topic));
-
         $this->info('Listening for cart items...');
 
         while (true) {

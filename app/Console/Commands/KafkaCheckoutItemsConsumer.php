@@ -35,9 +35,7 @@ class KafkaCheckoutItemsConsumer extends Command
         ]);
 
         $topic = 'checkout';
-
         $consumer = $context->createConsumer($context->createQueue($topic));
-
         $this->info('Listening for checkout items...');
 
         while (true) {
@@ -52,26 +50,17 @@ class KafkaCheckoutItemsConsumer extends Command
         $payload = json_decode($message);
         $user_id = $payload->user_id;
         $product_id = $payload->product_id;
-        $cartItems = Cart::with('product')->where('user_id',$user_id)
-            ->whereIn('product_id',$product_id)->get();
+        $cartItems = Cart::with('product')->where('user_id',$user_id)->whereIn('product_id',$product_id)->get();
 
         $totalAmount = 0;
         foreach ($cartItems as $cartItem) {
             $totalAmount += $cartItem->product->price * $cartItem->quantity;
         }
 
-        $order = Order::create([
-            'user_id' => $user_id,
-            'total_amount' => $totalAmount,
-        ]);
+        $order = Order::create(['user_id' => $user_id, 'total_amount' => $totalAmount]);
 
         foreach ($cartItems as $cartItem) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $cartItem->product->id,
-                'quantity' => $cartItem->quantity,
-                'subtotal' => $cartItem->product->price * $cartItem->quantity,
-            ]);
+            OrderItem::create(['order_id' => $order->id, 'product_id' => $cartItem->product->id, 'quantity' => $cartItem->quantity, 'subtotal' => $cartItem->product->price * $cartItem->quantity]);
         }
 
         Cart::query()->where('user_id', $user_id)->delete();
