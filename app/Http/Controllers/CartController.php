@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\Product;
+use App\Models\{Cart, Product};
 use App\Services\CartService;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\{RedirectResponse, Request};
 
 class CartController extends Controller
 {
@@ -32,7 +30,7 @@ class CartController extends Controller
         return redirect()->route('cart.view')->with('success', 'Product added to cart.');
     }
 
-    public function removeFromCart($cartItemId)
+    public function removeFromCart($cartItemId): RedirectResponse
     {
         $cartItem = Cart::findOrFail($cartItemId);
 

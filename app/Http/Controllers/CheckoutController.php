@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\CartService;
-use App\Services\OrderService;
+use App\Services\{CartService, OrderService};
 
 class CheckoutController extends Controller
 {
-    protected $cartService;
-    protected $orderService;
+    protected $cartService, $orderService;
 
     public function __construct(CartService $cartService, OrderService $orderService)
     {
