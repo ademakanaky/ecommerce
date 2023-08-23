@@ -7,10 +7,7 @@ use Interop\Queue\Message;
 
 class CustomMessage extends RdKafkaMessage implements Message
 {
-    private $body;
-    private $properties;
-    private $name;
-    private $value;
+    private $body, $properties, $name, $value;
 
     public function __construct($body, array $properties = [])
     {
@@ -34,9 +31,6 @@ class CustomMessage extends RdKafkaMessage implements Message
         $this->properties = $properties;
     }
 
-    /**
-     * Returns [name => value, ...]
-     */
     public function getProperties(): array
     {
         return $this->properties;
@@ -57,9 +51,6 @@ class CustomMessage extends RdKafkaMessage implements Message
         // TODO: Implement setHeaders() method.
     }
 
-    /**
-     * Returns [name => value, ...]
-     */
     public function getHeaders(): array
     {
         return ['name' => $this->name, 'value' => $this->value];
