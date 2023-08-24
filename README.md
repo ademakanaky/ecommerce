@@ -28,6 +28,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## About Apache Kafka
 
 Apache Kafka is an open-source stream-processing platform developed by the Apache Software Foundation. It is designed for handling real-time data feeds, processing streams of data, and building applications that require high-throughput, fault tolerance, and scalability.
+
 Apache Kafka provides reliable, scalable, and fault-tolerant data streaming and processing. It has gained popularity in scenarios where the ability to handle large volumes of data in real time is crucial, such as in modern data architectures and microservices-based systems.
 
 ## Contributing
