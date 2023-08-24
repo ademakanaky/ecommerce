@@ -2,13 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Kafka\KafkaProducer;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Services\CartService;
-use Enqueue\RdKafka\RdKafkaConnectionFactory;
-use Enqueue\RdKafka\RdKafkaConsumer;
 use Enqueue\RdKafka\RdKafkaContext;
 use Illuminate\Console\Command;
 
