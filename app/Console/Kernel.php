@@ -16,6 +16,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('kafka:consume-cart-items-topic')->everyMinute()
+            ->withoutOverlapping()->runInBackground();
+
+        $schedule->command('kafka:consume-checkout-items-topic')->everyMinute()
+            ->withoutOverlapping()->runInBackground();
     }
 
     /**
