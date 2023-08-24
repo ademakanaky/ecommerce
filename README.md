@@ -6,6 +6,7 @@ to browse products, add items to their cart, and checkout.
 ## Process flow
 When a user adds an item to his/her cart, a message will be sent to the Kafka topic "cart_items" with the user ID and the product ID. 
 A consumer, listening to the "cart_items" topic, stores the item in the user's cart in the database. 
+
 When a user checks out, a message will be sent to the Kafka topic "checkout" with the user ID and the list of product IDs in their cart. 
 A consumer, listening to the "checkout" topic, creates an order in the database with the user ID and the list of product IDs.
 
